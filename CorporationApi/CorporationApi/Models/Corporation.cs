@@ -11,6 +11,5 @@ namespace CorporationApi.Models
         public string UF { get; set; }
         public string NameFantasy { get; set; }
         public string CNPJ { get; set; }
-        public List<Provider> Providers { get; set; }
     }
 }
