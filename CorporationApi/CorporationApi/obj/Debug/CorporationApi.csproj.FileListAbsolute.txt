@@ -1,0 +1,1 @@
+C:\bludata\corporation_api\CorporationApi\CorporationApi\obj\Debug\CorporationApi.csprojAssemblyReference.cache
