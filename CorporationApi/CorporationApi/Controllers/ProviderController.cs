@@ -17,8 +17,7 @@ namespace CorporationApi.Controllers
 
         [HttpGet]
         [Route("api/providers")]
-        [ResponseType(typeof(List<Provider>))]
-        public IEnumerable<Provider> GetAllProviders()
+        public IEnumerable<Provider> GetAll()
         {
             try
             {
@@ -32,8 +31,7 @@ namespace CorporationApi.Controllers
 
         [HttpGet]
         [Route("api/provider/{id}")]
-        [ResponseType(typeof(Provider))]
-        public Provider GetProvider(int id)
+        public Provider Get(int id)
         {
             try
             {
@@ -51,16 +49,16 @@ namespace CorporationApi.Controllers
         }
 
         [HttpPost]
-        [Route("api/provider/post")]
-        [ResponseType(typeof(HttpResponse))]
-        public HttpResponseMessage PostProvider([FromBody] Provider item)
+        [Route("api/provider/save")]
+        public HttpResponseMessage Post([FromBody] Provider provider)
         {
             bool isSave = false;
             try
             {
+               
                 if (ModelState.IsValid)
                 {
-                    isSave = repository.Add(item);
+                    isSave = repository.Add(provider);
                     if (isSave)
                     {
                         return new HttpResponseMessage(HttpStatusCode.OK);
@@ -81,8 +79,7 @@ namespace CorporationApi.Controllers
 
         [HttpPut]
         [Route("api/provider/put/{id}")]
-        [ResponseType(typeof(HttpResponse))]
-        public HttpResponseMessage PutProvider(int id, [FromBody] Provider provider)
+        public HttpResponseMessage Put(int id, [FromBody] Provider provider)
         {
             try
             {
@@ -108,8 +105,7 @@ namespace CorporationApi.Controllers
 
         [HttpDelete]
         [Route("api/provider/delete/{id}")]
-        [ResponseType(typeof(HttpResponse))]
-        public HttpResponseMessage DeleteProvider(int id)
+        public HttpResponseMessage Delete(int id)
         {
             try
             {

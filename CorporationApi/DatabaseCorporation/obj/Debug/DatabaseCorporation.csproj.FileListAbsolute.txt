@@ -1,0 +1,4 @@
+C:\bludata\corporation_api\CorporationApi\DatabaseCorporation\bin\Debug\DatabaseCorporation.dll
+C:\bludata\corporation_api\CorporationApi\DatabaseCorporation\bin\Debug\DatabaseCorporation.pdb
+C:\bludata\corporation_api\CorporationApi\DatabaseCorporation\obj\Debug\DatabaseCorporation.dll
+C:\bludata\corporation_api\CorporationApi\DatabaseCorporation\obj\Debug\DatabaseCorporation.pdb

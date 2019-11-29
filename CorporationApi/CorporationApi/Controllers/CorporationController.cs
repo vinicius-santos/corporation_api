@@ -1,5 +1,6 @@
 ﻿using CorporationApi.Models;
 using CorporationApi.Models.Respository;
+using Microsoft.AspNetCore.Cors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,8 @@ namespace CorporationApi.Controllers
 
         static readonly ICorporationRepository repository = new CorporationRepository();
 
-        [HttpGet]
         [Route("api/corporations")]
-        [ResponseType(typeof(List<Corporation>))]
-        public IEnumerable<Corporation> GetAllCorporations()
+        public IEnumerable<Corporation> GetAll()
         {
             try
             {
@@ -31,10 +30,8 @@ namespace CorporationApi.Controllers
             }
         }
 
-        [HttpGet]
         [Route("api/corporation/{id}")]
-        [ResponseType(typeof(Corporation))]
-        public Corporation GetCorporation(int id)
+        public Corporation Get(int id)
         {
             try
             {
@@ -52,19 +49,18 @@ namespace CorporationApi.Controllers
         }
 
         [HttpPost]
-        [Route("api/corporation/post")]
-        [ResponseType(typeof(HttpResponse))]
-        public HttpResponseMessage PostCorporation([FromBody] Corporation item)
+        [Route("api/corporation/save")]
+        public IHttpActionResult Save([FromBody] Corporation corporation)
         {
             bool isSave = false;
             try
             {
                 if (ModelState.IsValid)
                 {
-                    isSave = repository.Add(item);
+                    isSave = repository.Add(corporation);
                     if (isSave)
                     {
-                        return new HttpResponseMessage(HttpStatusCode.OK);
+                        return Ok();
                     }
                     else
                     {
@@ -82,13 +78,13 @@ namespace CorporationApi.Controllers
 
         [HttpPut]
         [Route("api/corporation/put/{id}")]
-        [ResponseType(typeof(HttpResponse))]
-        public HttpResponseMessage PutCorporation(int id, [FromBody] Corporation corporation)
+        public HttpResponseMessage Put(int id, [FromBody] Corporation corporation)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    
                     corporation.ID = id;
                     if (repository.Update(corporation) == false)
                     {
@@ -109,8 +105,7 @@ namespace CorporationApi.Controllers
 
         [HttpDelete]
         [Route("api/corporation/delete/{id}")]
-        [ResponseType(typeof(HttpResponse))]
-        public HttpResponseMessage DeleteCorporation(int id)
+        public HttpResponseMessage Delete(int id)
         {
             try
             {

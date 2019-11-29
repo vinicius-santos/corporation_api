@@ -15,8 +15,8 @@ namespace CorporationApi.Models.Respository
             {
                 return false;
             }
-            providers.Add(item);
             item.ID = _nextId++;
+            providers.Add(item);
             return true;
         }
 
